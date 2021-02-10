@@ -1,5 +1,9 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { authReducer } from '../reducers/authReducer';
+import thunk from 'redux-thunk';
+
+//con esta constante se activa redux tools
+const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -7,5 +11,10 @@ const reducers = combineReducers({
 
 export const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  //ya que create store solo permite dos parametros (reducer y enhacer)
+  //pasamos el composeEnhacer para que a esta misma podamos pasarle el thunk
+  // es thunk es para realizar cambios al state de forma async
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
 );
