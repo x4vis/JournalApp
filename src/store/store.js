@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { authReducer } from '../reducers/authReducer';
 import thunk from 'redux-thunk';
+import { uiReducer } from '../reducers/uiReducer';
 
 //con esta constante se activa redux tools
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -8,6 +9,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 //combineReducers es necesario para poder pasar varios reducers en la creacion del store
 const reducers = combineReducers({
   auth: authReducer,
+  ui: uiReducer,
 });
 
 export const store = createStore(

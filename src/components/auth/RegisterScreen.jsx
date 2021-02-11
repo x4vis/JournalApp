@@ -2,8 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import validator from 'validator';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeError, setError } from '../../actions/ui';
 
 export const RegisterScreen = () => {
+
+  //dispatch de redux
+  const dispatch = useDispatch();
+  //con este hook accedemos al state que necesitemos de redux,
+  //en este caso del reducer ui
+  const { msgError } = useSelector(state => state.ui);
 
   const [formValues, handleInputChange] = useForm({
     name: 'Javier',
@@ -21,16 +29,23 @@ export const RegisterScreen = () => {
   }
 
   const isFormValid = () => {
+    //en cada dispatch pasamos una accion con el mensaje a setear
+
     if (name.trim().length === 0) {
+      dispatch(setError("Name field is required"));
       return false;
     } else if (!validator.isEmail(email)) {
+      dispatch(setError("The email is not valid"));
       return false;
     } else if (password !== password2) {
+      dispatch(setError("The passwords must match"));
       return false;
     } else if (!validator.isStrongPassword(password)) {
+      dispatch(setError("The password must contain 8 characters, min. 1 lower and upper case letter, min. 1 number and min. 1 symbol"));
       return false;
     }
 
+    dispatch(removeError());
     return true;
   }
 
@@ -40,9 +55,15 @@ export const RegisterScreen = () => {
 
       <form onSubmit={handleRegister}>
 
-        <div className="auth__alert-error">
-          Error
-        </div>
+        {
+          msgError &&
+          (
+            <div className="auth__alert-error">
+              {msgError}
+            </div>
+          )
+        }
+
 
         <input type="text"
                className="auth__input"
