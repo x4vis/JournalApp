@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 //con esta constante se activa redux tools
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
+//combineReducers es necesario para poder pasar varios reducers en la creacion del store
 const reducers = combineReducers({
   auth: authReducer,
 });
