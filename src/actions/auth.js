@@ -12,8 +12,8 @@ export const startLoginEmailPassword = () => {
 export const startGoogleLogin = () => {
   return (dispatch) => {
     firebase.auth().signInWithPopup(googleAuthProvider)
-    .then(userCred => {
-      console.log('userCred :>> ', userCred);
+    .then(({ user }) => {
+      dispatch(login(user.uid, user.displayName))
     });
   }
 }
