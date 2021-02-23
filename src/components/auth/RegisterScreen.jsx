@@ -4,6 +4,7 @@ import { useForm } from '../../hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeError, setError } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 
 export const RegisterScreen = () => {
 
@@ -15,9 +16,9 @@ export const RegisterScreen = () => {
 
   const [formValues, handleInputChange] = useForm({
     name: 'Javier',
-    email: 'javislop@gmail.com',
-    password: '1234',
-    password2: '1234',
+    email: 'javislop@hotmail.com',
+    password: 'Javisl.18',
+    password2: 'Javisl.18',
   });
 
   const {name, email, password, password2} = formValues;
@@ -25,7 +26,7 @@ export const RegisterScreen = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    isFormValid() && console.log("formulario correcto");
+    isFormValid() && dispatch(startRegisterWithEmailPasswordName(email, password, name));
   }
 
   const isFormValid = () => {
@@ -64,7 +65,6 @@ export const RegisterScreen = () => {
           )
         }
 
-
         <input type="text"
                className="auth__input"
                autoComplete="off"
@@ -96,7 +96,8 @@ export const RegisterScreen = () => {
                onChange={handleInputChange} />
 
         <button type="submit"
-                className="btn-primary fullWidth mb-5 mt-1">
+                className="btn-primary fullWidth mb-5 mt-1"
+                >
           Register
         </button>
 

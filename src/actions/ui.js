@@ -8,3 +8,11 @@ export const setError = (err) => ({
 export const removeError = () => ({
   type: types.uiRmvError
 });
+
+export const startloading = () => ({
+  type: types.uiStartLoading
+});
+
+export const finishLoading = () => ({
+  type: types.uiFinishLoading
+});
