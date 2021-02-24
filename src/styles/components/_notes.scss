@@ -18,6 +18,13 @@
     height: 100%;
     padding: 20px;
 
+    form {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     .notes__title-input {
       color: $dark-grey;
       font-size: 25px;
