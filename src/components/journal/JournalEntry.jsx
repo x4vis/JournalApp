@@ -1,20 +1,31 @@
 import React from 'react';
 
-export const JournalEntry = () => {
+export const JournalEntry = ({ id, date, title, body, url }) => {
   return (
     <div className="journal__entry">
-      <div className="journal__entry-picture"
-           style={{ 
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-            backgroundImage: 'url(https://www.freejpg.com.ar/asset/900/f8/f862/F100011046.jpg)'
-           }}>
-      </div>
+
+      {
+        url &&
+        <div className="journal__entry-picture"
+            style={{ 
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              backgroundImage: `url(${url})`
+            }}>
+        </div>
+      }
+
+      {
+        (!url | url == "") &&
+        <div style={{ marginLeft: 10 }}>
+          <i className="far fa-image fa-5x ms-1"></i>
+        </div>
+      }
 
       <div className="journal__entry-body">
-        <p className="journal__entry-title">Un nuevo dia</p>
+        <p className="journal__entry-title">{title}</p>
         <p className="journal__entry-content">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          {body}
         </p>
       </div>
 
