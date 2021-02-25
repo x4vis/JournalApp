@@ -1,6 +1,10 @@
 import React from 'react';
+import moment from 'moment';
 
 export const JournalEntry = ({ id, date, title, body, url }) => {
+
+  const noteDate = moment(date);
+
   return (
     <div className="journal__entry">
 
@@ -30,8 +34,8 @@ export const JournalEntry = ({ id, date, title, body, url }) => {
       </div>
 
       <div className="journal__entry-date-box">
-        <span>Monday</span>
-        <h4>28</h4>
+        <span>{noteDate.format('dddd')}</span>
+        <h4>{noteDate.format('D')}</h4>
       </div>
     </div>
   )
