@@ -10,7 +10,7 @@ export const startLoginEmailPassword = (email, password) => {
     dispatch(startloading());
 
     try {
-      const user = await firebase.auth().signInWithEmailAndPassword(email, password);
+      const { user } = await firebase.auth().signInWithEmailAndPassword(email, password);
       //se setea el estado para el login y se cambia el estado
       //de loading a false
       dispatch(login(user.uid, user.displayName));
