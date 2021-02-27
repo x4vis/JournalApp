@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
-import { startNewNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote } from '../../actions/notes';
 import { JournalEntries } from './JournalEntries';
 
 export const Sidebar = () => {
 
   const dispatch = useDispatch();
-  const { name: userName } = useSelector(state => state.auth);
+  const { name: userName, uid } = useSelector(state => state.auth);
   
   const handlelLogout = () => {
     dispatch(startLogout());
@@ -15,6 +15,7 @@ export const Sidebar = () => {
 
   const handleAddNew = () => {
     dispatch(startNewNote());
+    dispatch(startLoadingNotes(uid));
   }
 
   return (
