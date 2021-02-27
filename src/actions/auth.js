@@ -57,5 +57,6 @@ export const startLogout = () => {
   return async (dispatch) => {
     await firebase.auth().signOut();
     dispatch({ type: types.logout });
+    dispatch({ type: types.notesLogoutCleaning });
   }
 }

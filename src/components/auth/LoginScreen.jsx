@@ -23,8 +23,9 @@ export const LoginScreen = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    console.log("entra");
     //recibe una funcion, que en este caso es el login action
-    dispatch(startLoginEmailPassword(email, password));
+    isFormValid() && dispatch(startLoginEmailPassword(email, password));
   }
   
   const handleGoogleLogin = () => {
