@@ -29,6 +29,15 @@ button {
   }
 }
 
+.btn-danger {
+  background-color: red;
+  transition: background-color .2s ease-in-out;
+
+  &:hover {
+    background-color: darken($color: red, $amount: 10);
+  }
+}
+
 .google-btn {
     cursor: pointer;
     margin-top: 5px;

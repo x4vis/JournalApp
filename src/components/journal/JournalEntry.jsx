@@ -29,7 +29,7 @@ export const JournalEntry = ({ id, date, title, body, url }) => {
       }
 
       {
-        (!url | url == "") &&
+        !url &&
         <div style={{ marginLeft: 10 }}>
           <i className="far fa-image fa-5x ms-1"></i>
         </div>
